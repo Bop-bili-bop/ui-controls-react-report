@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive examples of ten common UI controls." />
+    <title>UI Controls Report</title>
+    <style>:root {
+  color: #222222;
+  background: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  color: #0056b3;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.page {
+  width: min(980px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 30px 0 44px;
+}
+
+.report-header,
+.control-section {
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.report-header {
+  padding: 30px;
+  text-align: center;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  color: #1f1f1f;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+}
+
+h2 {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e5e5;
+  color: #2b2b2b;
+  font-size: 1.55rem;
+}
+
+p,
+li {
+  color: #444444;
+  line-height: 1.6;
+}
+
+.report-header p {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.control-section {
+  margin-top: 18px;
+  padding: 24px;
+}
+
+ul {
+  margin: 0 0 18px 22px;
+  padding: 0;
+}
+
+.example-box,
+.label-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.label,
+.form-label {
+  color: #222222;
+  font-weight: 700;
+}
+
+label {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  color: #333333;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  width: 17px;
+  height: 17px;
+  accent-color: #0066cc;
+}
+
+.stacked-example {
+  display: grid;
+  gap: 14px;
+  max-width: 520px;
+}
+
+.input-line {
+  display: grid;
+  gap: 7px;
+  align-items: start;
+  font-weight: 700;
+}
+
+.input-line input,
+.input-line select {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 11px;
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #222222;
+}
+
+.input-line.compact {
+  max-width: 360px;
+}
+
+button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #0056b3;
+  border-radius: 4px;
+  background: #0066cc;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  background: #004f9f;
+}
+
+button.secondary {
+  border-color: #777777;
+  background: #eeeeee;
+  color: #222222;
+}
+
+button.secondary:hover {
+  background: #dddddd;
+}
+
+button.danger {
+  border-color: #a72222;
+  background: #c93333;
+}
+
+button.danger:hover {
+  background: #a72222;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.tooltip-trigger:focus-visible {
+  outline: 3px solid rgba(0, 102, 204, 0.25);
+  outline-offset: 2px;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tabs button {
+  border-color: #cccccc;
+  background: #eeeeee;
+  color: #222222;
+}
+
+.tabs button.active {
+  border-color: #0066cc;
+  background: #0066cc;
+  color: #ffffff;
+}
+
+.tab-panel,
+.status {
+  min-height: 46px;
+  margin: 0;
+  padding: 13px 15px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  background: #fafafa;
+  color: #333333;
+}
+
+.status {
+  margin-top: 12px;
+}
+
+.label-examples {
+  align-items: stretch;
+}
+
+.label-examples span {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+}
+
+.required-label {
+  color: #a15a00;
+  font-weight: 700;
+}
+
+.success-label {
+  color: #127238;
+  font-weight: 700;
+}
+
+.tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #222222;
+  font-weight: 700;
+}
+
+.tooltip-trigger.help {
+  width: 38px;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.tooltip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  z-index: 2;
+  width: 250px;
+  padding: 9px 11px;
+  border-radius: 4px;
+  background: #222222;
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+}
+
+.tooltip-trigger:hover .tooltip,
+.tooltip-trigger:focus .tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+}
+
+th {
+  background: #efefef;
+  color: #222222;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: min(100% - 18px, 980px);
+    padding-top: 16px;
+  }
+
+  .report-header,
+  .control-section {
+    padding: 18px;
+  }
+
+  .example-box,
+  .label-examples {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tabs {
+    display: grid;
+  }
+
+  .tabs button {
+    width: 100%;
+  }
+}
+</style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@19/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">const { useState } = React;
+
+const gridRows = [
+  { name: 'Anna', age: 22, role: 'Student' },
+  { name: 'Ivan', age: 25, role: 'Designer' },
+  { name: 'Maria', age: 21, role: 'Developer' },
+  { name: 'John', age: 28, role: 'Manager' },
+];
+
+function App() {
+  const [gender, setGender] = useState('male');
+  const [interests, setInterests] = useState({ sports: true, music: false, art: false });
+  const [activeTab, setActiveTab] = useState('profile');
+  const [country, setCountry] = useState('ukraine');
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('No action yet.');
+
+  const toggleInterest = (key) => {
+    setInterests((current) => ({ ...current, [key]: !current[key] }));
+  };
+
+  return (
+    <main className="page">
+      <header className="report-header">
+        <h1>UI Controls: Description and Examples</h1>
+        <p>
+          This page demonstrates common user interface controls, explains their purpose, and
+          shows simple working examples for each element.
+        </p>
+      </header>
+
+      <section className="control-section">
+        <h2>1. Radiobutton</h2>
+        <p>Radiobuttons allow users to select one option from a set. Only one option can be selected at a time.</p>
+        <ul>
+          <li>Used for mutually exclusive choices.</li>
+          <li>Grouped together visually and functionally.</li>
+        </ul>
+        <div className="example-box">
+          <span className="label">Gender:</span>
+          <label>
+            <input type="radio" name="gender" value="male" checked={gender === 'male'} onChange={(event) => setGender(event.target.value)} />
+            Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female" checked={gender === 'female'} onChange={(event) => setGender(event.target.value)} />
+            Female
+          </label>
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>2. Checkbox</h2>
+        <p>Checkboxes let users select one or more options independently.</p>
+        <ul>
+          <li>Used for multiple selections.</li>
+          <li>Each checkbox operates independently.</li>
+        </ul>
+        <div className="example-box">
+          <span className="label">Interests:</span>
+          {Object.entries({ sports: 'Sports', music: 'Music', art: 'Art' }).map(([key, label]) => (
+            <label key={key}>
+              <input type="checkbox" checked={interests[key]} onChange={() => toggleInterest(key)} />
+              {label}
+            </label>
+          ))}
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>3. Text input</h2>
+        <p>Text inputs allow users to enter and edit text data.</p>
+        <ul>
+          <li>Used for forms, search bars, comments, and account pages.</li>
+          <li>Can collect short single-line values.</li>
+        </ul>
+        <div className="stacked-example">
+          <label className="input-line">
+            Name:
+            <input type="text" placeholder="Enter your name" value={name} onChange={(event) => setName(event.target.value)} />
+          </label>
+          <label className="input-line">
+            Search:
+            <input type="search" placeholder="Search..." />
+          </label>
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>4. Tabs</h2>
+        <p>Tabs organize content into separate views, accessible by clicking tab headers.</p>
+        <ul>
+          <li>Used for navigation between related sections.</li>
+          <li>Improves usability by reducing clutter.</li>
+        </ul>
+        <div className="tabs" role="tablist" aria-label="Example tabs">
+          {['profile', 'settings', 'contact'].map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab}
+              className={activeTab === tab ? 'active' : ''}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab[0].toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
+        <div className="tab-panel" role="tabpanel">
+          {activeTab === 'profile' && 'Profile content here...'}
+          {activeTab === 'settings' && 'Settings content here...'}
+          {activeTab === 'contact' && 'Contact content here...'}
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>5. Button</h2>
+        <p>Buttons trigger actions when clicked, such as submit, save, or delete.</p>
+        <ul>
+          <li>Can be styled for primary, secondary, or danger actions.</li>
+          <li>Used for form submission and interface commands.</li>
+        </ul>
+        <div className="example-box">
+          <button type="button" onClick={() => setMessage(`Submitted by ${name || 'anonymous user'}.`)}>
+            Submit
+          </button>
+          <button type="button" className="secondary" onClick={() => setMessage('Saved successfully.')}>
+            Save
+          </button>
+          <button type="button" className="danger" onClick={() => setMessage('Delete action selected.')}>
+            Delete
+          </button>
+        </div>
+        <p className="status">{message}</p>
+      </section>
+
+      <section className="control-section">
+        <h2>6. Text label</h2>
+        <p>Text labels provide information or describe other UI elements.</p>
+        <ul>
+          <li>Used for field names, instructions, and status messages.</li>
+          <li>Improve accessibility and clarity.</li>
+        </ul>
+        <div className="label-examples">
+          <span className="form-label">Email address:</span>
+          <span className="required-label">Required field</span>
+          <span className="success-label">Success! Your data was saved.</span>
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>7. Link</h2>
+        <p>Links navigate users to other pages, page sections, or resources.</p>
+        <ul>
+          <li>Usually underlined or colored for visibility.</li>
+          <li>Can open in the same tab or a new tab.</li>
+        </ul>
+        <div className="example-box">
+          <a href="https://www.google.com" target="_blank" rel="noreferrer">Google</a>
+          <a href="https://www.wikipedia.org" target="_blank" rel="noreferrer">Wikipedia</a>
+          <a href="#data-grid">Local page link</a>
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>8. Tooltip</h2>
+        <p>Tooltips display additional information when hovering over or focusing on an element.</p>
+        <ul>
+          <li>Used for hints, explanations, or extra details.</li>
+          <li>Improve user experience without adding too much visible text.</li>
+        </ul>
+        <div className="example-box">
+          <span className="tooltip-trigger" tabIndex="0">
+            Hover me
+            <span className="tooltip">Tooltip text: this hint appears on hover or focus.</span>
+          </span>
+          <span className="tooltip-trigger help" tabIndex="0">
+            ?
+            <span className="tooltip">Help info: short contextual explanation.</span>
+          </span>
+        </div>
+      </section>
+
+      <section className="control-section">
+        <h2>9. Dropdown list</h2>
+        <p>Dropdown lists let users select one option from a collapsible list.</p>
+        <ul>
+          <li>Used for country selection, settings, filters, and categories.</li>
+          <li>Useful when many options should take little screen space.</li>
+        </ul>
+        <label className="input-line compact">
+          Country:
+          <select value={country} onChange={(event) => setCountry(event.target.value)}>
+            <option value="ukraine">Ukraine</option>
+            <option value="poland">Poland</option>
+            <option value="germany">Germany</option>
+            <option value="usa">United States</option>
+          </select>
+        </label>
+      </section>
+
+      <section className="control-section" id="data-grid">
+        <h2>10. Data grid</h2>
+        <p>Data grids display tabular data with rows and columns.</p>
+        <ul>
+          <li>Used for spreadsheets, admin panels, reports, and catalogs.</li>
+          <li>Can support sorting, filtering, pagination, and inline editing.</li>
+        </ul>
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {gridRows.map((row) => (
+                <tr key={row.name}>
+                  <td>{row.name}</td>
+                  <td>{row.age}</td>
+                  <td>{row.role}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+  </body>
+</html>
